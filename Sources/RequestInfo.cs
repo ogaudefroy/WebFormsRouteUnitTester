@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reflection;
     using System.Web;
     using System.Web.Routing;
 
@@ -112,7 +111,6 @@
                                 }));
                             }
                         }
-                        return;
                     }
                 }
             }
@@ -124,12 +122,10 @@
             {
                 return url;
             }
-
             if (url.StartsWith("/"))
             {
                 return "~" + url;
             }
-
             return "~/" + url;
         }
 
@@ -139,15 +135,15 @@
             {
                 return true;
             }
-
             return value1 is IComparable && value2 is IComparable && StringComparer.InvariantCultureIgnoreCase.Compare(value1.ToString(), value2.ToString()) == 0;
         }
 
         private Dictionary<string, object> BuildDictionary(object routeValues)
         {
-            PropertyInfo[] infos = routeValues.GetType().GetProperties();
-
-            return infos.ToDictionary(info => info.Name, info => info.GetValue(routeValues, null));
+            return routeValues
+                    .GetType()
+                    .GetProperties()
+                    .ToDictionary(info => info.Name, info => info.GetValue(routeValues, null));
         }
     }
 }
