@@ -89,7 +89,8 @@
                     throw new AssertionException(string.Format("Route values mismatch. Expected 0 route values, but vas: {0} route values (for url: \"{1}\").", actualRouteValuesDictionary.Count, requestUrl));
                 }
                 var expectedRouteValuesDictionary = BuildDictionary(expectedRouteValues);
-                if (expectedRouteValuesDictionary.Count >= actualRouteValuesDictionary.Count)
+
+                if (expectedRouteValuesDictionary.Any())
                 {
                     using (var enumerator = expectedRouteValuesDictionary.GetEnumerator())
                     {
@@ -115,7 +116,6 @@
                     }
                 }
             }
-
         }
 
         private static string PrepareUrl(string url)
