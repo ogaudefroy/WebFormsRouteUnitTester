@@ -168,6 +168,20 @@
         }
 
         [Test]
+        public void ShouldMapPageRoute_CorrectRouteValues_ShouldWorkFine()
+        {
+            var routeCollection = new RouteCollection();
+            routeCollection.MapPageRoute("Details", "{culture}/details/{id}", "~/pages/details.aspx", false, new RouteValueDictionary { { "culture", "en-US" } });
+
+            var tester = new RouteTester(routeCollection);
+            var requestInfo = tester.WithIncomingRequest("en-US/details/14");
+
+            Assert.That(
+                () => requestInfo.ShouldMatchPageRoute("~/pages/details.aspx", new {id = 14, culture = "en-US"}),
+                Throws.Nothing);
+        }
+
+        [Test]
         public void ShouldMapPageRoute_MissingRouteValueKey_ShouldThrowAssertionException()
         {
             var routeCollection = new RouteCollection();
@@ -177,12 +191,30 @@
             var requestInfo = tester.WithIncomingRequest("/fr-FR/details/13");
 
             Assert.That(
-                () => requestInfo.ShouldMatchPageRoute("~/pages/details.aspx", new { id = 13 }),
+                () => requestInfo.ShouldMatchPageRoute("~/pages/details.aspx", new { title = "project-manager" }),
                 Throws
                     .InstanceOf<WebFormsRouteUnitTester.AssertionException>()
                     .With
                     .Message
-                    .EqualTo(@"Route values mismatch. Expected 0 route values, but vas: 1 route values (for url: ""/details"")."));
+                    .EqualTo(@"Route values mismatch. Expected route value with key ""title"" was not found (for url: ""/fr-FR/details/13"")."));
+        }
+
+        [Test]
+        public void ShouldMapPageRoute_WrongRouteValue_ShouldThrowAssertionException()
+        {
+            var routeCollection = new RouteCollection();
+            routeCollection.MapPageRoute("Details", "{culture}/details/{id}", "~/pages/details.aspx", false, new RouteValueDictionary { { "culture", "en-US" } });
+
+            var tester = new RouteTester(routeCollection);
+            var requestInfo = tester.WithIncomingRequest("/fr-FR/details/13");
+
+            Assert.That(
+                () => requestInfo.ShouldMatchPageRoute("~/pages/details.aspx", new { id = 14 }),
+                Throws
+                    .InstanceOf<WebFormsRouteUnitTester.AssertionException>()
+                    .With
+                    .Message
+                    .EqualTo(@"Route values mismatch. Expected: route value with key ""id"" and value ""14"", but was: route value with key ""id"" and value ""13"" (for url: ""/fr-FR/details/13"")."));
         }
 
         class FakeRouteHandler : IRouteHandler
