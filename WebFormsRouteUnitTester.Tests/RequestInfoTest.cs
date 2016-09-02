@@ -177,7 +177,7 @@
             var requestInfo = tester.WithIncomingRequest("en-US/details/14");
 
             Assert.That(
-                () => requestInfo.ShouldMatchPageRoute("~/pages/details.aspx", new {id = 14, culture = "en-US"}),
+                () => requestInfo.ShouldMatchPageRoute("~/pages/details.aspx", new { id = 14, culture = "en-US" }),
                 Throws.Nothing);
         }
 
@@ -215,6 +215,20 @@
                     .With
                     .Message
                     .EqualTo(@"Route values mismatch. Expected: route value with key ""id"" and value ""14"", but was: route value with key ""id"" and value ""13"" (for url: ""/fr-FR/details/13"")."));
+        }
+
+        [Test]
+        public void ShouldMapPageRoute_CompareNullRouteValue_ShouldWorkFine()
+        {
+            var routeCollection = new RouteCollection();
+            routeCollection.MapPageRoute("Details", "{culture}/details/{id}", "~/pages/details.aspx", false, new RouteValueDictionary { { "culture", "en-US" }, { "id", (int?)null } });
+
+            var tester = new RouteTester(routeCollection);
+            var requestInfo = tester.WithIncomingRequest("/fr-FR/details/");
+
+            Assert.That(
+                () => requestInfo.ShouldMatchPageRoute("~/pages/details.aspx", new { id = (string)null }),
+                Throws.Nothing);
         }
 
         class FakeRouteHandler : IRouteHandler
