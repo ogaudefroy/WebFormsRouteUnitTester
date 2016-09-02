@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -50,7 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Sources\WebFormsRouteUnitTester.csproj">
+    <ProjectReference Include="..\WebFormsRouteUnitTester\WebFormsRouteUnitTester.csproj">
       <Project>{7AFD867C-9894-4720-BAED-FF19671D4653}</Project>
       <Name>WebFormsRouteUnitTester</Name>
     </ProjectReference>

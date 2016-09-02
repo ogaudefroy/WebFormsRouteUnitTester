@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFormsRouteUnitTester", "Sources\WebFormsRouteUnitTester.csproj", "{7AFD867C-9894-4720-BAED-FF19671D4653}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFormsRouteUnitTester", "WebFormsRouteUnitTester\WebFormsRouteUnitTester.csproj", "{7AFD867C-9894-4720-BAED-FF19671D4653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFormsRouteUnitTester.Tests", "Tests\WebFormsRouteUnitTester.Tests\WebFormsRouteUnitTester.Tests.csproj", "{643D5802-E934-40E5-95A8-F43CA17D5454}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebFormsRouteUnitTester.Tests", "WebFormsRouteUnitTester.Tests\WebFormsRouteUnitTester.Tests.csproj", "{643D5802-E934-40E5-95A8-F43CA17D5454}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
