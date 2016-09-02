@@ -2,6 +2,7 @@
 A library for unit testing ASP.Net routing tables for WebForms. 
 Supports inbound and outbound route testing
 
+[![Build status](https://ci.appveyor.com/api/projects/status/18fyxxswmuxiwhsm?svg=true)](https://ci.appveyor.com/project/ogaudefroy/webformsrouteunittester)
 ## Initialize RouteTester
 ```C#
 var routes = new RouteCollection();
