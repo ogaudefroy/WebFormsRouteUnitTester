@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExampleTest.cs" />
     <Compile Include="RequestInfoTest.cs" />
     <Compile Include="RouteInfoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
