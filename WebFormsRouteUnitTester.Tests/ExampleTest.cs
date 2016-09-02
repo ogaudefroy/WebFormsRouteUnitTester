@@ -11,7 +11,12 @@
             var routes = new RouteCollection();
             routes.Ignore("content/{*content}");
             routes.MapPageRoute("Cookies", "cookies", "~/pages/cookies.aspx");
-            routes.MapPageRoute("ItemDetails", "{culture}/items/{id}", "~/pages/items/details.aspx", false, new RouteValueDictionary(new { culture = "en-US" }));
+            routes.MapPageRoute(
+                routeName: "ItemDetails", 
+                routeUrl: "{culture}/items/{id}",
+                physicalFile: "~/pages/items/details.aspx", 
+                checkPhysicalUrlAccess: false,
+                defaults: new RouteValueDictionary(new { culture = "en-US" }));
             return new RouteTester(routes);
         }
 
