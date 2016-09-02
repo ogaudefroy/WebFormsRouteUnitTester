@@ -48,6 +48,7 @@
     <Compile Include="RequestInfoTest.cs" />
     <Compile Include="RouteInfoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteTesterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebFormsRouteUnitTester\WebFormsRouteUnitTester.csproj">
