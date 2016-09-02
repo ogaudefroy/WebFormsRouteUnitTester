@@ -7,7 +7,12 @@
     /// </summary>
     public class AssertionException : Exception
     {
-        internal AssertionException(string message) : base(message)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssertionException"/> class.
+        /// </summary>
+        /// <param name="message">The exception message.</param>
+        internal AssertionException(string message) 
+            : base(message)
         {
         }
     }

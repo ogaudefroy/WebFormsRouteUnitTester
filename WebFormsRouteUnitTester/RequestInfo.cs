@@ -14,6 +14,12 @@
         private readonly string requestUrl;
         private readonly RouteCollection applicationRoutes;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequestInfo"/> class.
+        /// </summary>
+        /// <param name="applicationRoutes">The registered application routes.</param>
+        /// <param name="url">The requested URL.</param>
+        /// <param name="httpMethod">The requested HTTP method.</param>
         internal RequestInfo(RouteCollection applicationRoutes, string url, string httpMethod)
         {
             HttpContext = TestUtility.GetHttpContext(PrepareUrl(url), httpMethod);
@@ -24,7 +30,11 @@
         /// <summary>
         /// The mocked HTTP context for the test to be performed.
         /// </summary>
-        public HttpContextBase HttpContext { get; set; }
+        public HttpContextBase HttpContext
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Asserts that no routes would be matched by the given request.
