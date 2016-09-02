@@ -1,7 +1,7 @@
 ﻿namespace WebFormsRouteUnitTester
 {
     using System;
-    using System.Reflection;
+    using System.Linq;
     using System.Web.Routing;
     
     /// <summary>
@@ -9,10 +9,10 @@
     /// </summary>
     public class RouteTester
     {
-        private RouteCollection applicationRoutes;
+        private readonly RouteCollection applicationRoutes;
         
         /// <summary>
-        /// Initializes a new instance of the <see cref="RouteTester{T}"/> class.
+        /// Initializes a new instance of the <see cref="RouteTester"/> class.
         /// </summary>
         /// <param name="routes">A <see cref="RouteCollection"/> containing the routes under test.</param>
         /// <exception cref="ArgumentException">Thrown when <paramref name="routes"/> is empty.</exception>
@@ -29,12 +29,7 @@
             }
             applicationRoutes = routes;
         }
-
-        protected RouteCollection ApplicationRoutes
-        {
-            set { applicationRoutes = value; }
-        }
-
+        
         /// <summary>
         /// Used to supply the routing information used for an outgoing route test.
         /// </summary>
@@ -49,7 +44,10 @@
                 throw new ArgumentNullException("routeName");
             }
             RouteValueDictionary routeValueDictionary = routeValues != null
-                                                           ? BuildRouteValueDictionary(routeValues)
+                                                           ? new RouteValueDictionary(routeValues
+                                                                                        .GetType()
+                                                                                        .GetProperties()
+                                                                                        .ToDictionary(p => p.Name, p => p.GetValue(routeValues, null)))
                                                            : null;
             return new RouteInfo(applicationRoutes, routeName, routeValueDictionary);
         }
@@ -68,19 +66,6 @@
                 throw new ArgumentException("Url cannot be null or empty.", "url");
             }
             return new RequestInfo(applicationRoutes, url, httpMethod);
-        }
-
-        private static RouteValueDictionary BuildRouteValueDictionary(object routeValues)
-        {
-            PropertyInfo[] infos = routeValues.GetType().GetProperties();
-            var routeValueDictionary = new RouteValueDictionary();
-
-            foreach (PropertyInfo info in infos)
-            {
-                routeValueDictionary.Add(info.Name, info.GetValue(routeValues, null));
-            }
-
-            return routeValueDictionary;
         }
     }
 }
