@@ -19,10 +19,9 @@
         /// </summary>
         /// <param name="applicationRoutes">The registered application routes.</param>
         /// <param name="url">The requested URL.</param>
-        /// <param name="httpMethod">The requested HTTP method.</param>
-        internal RequestInfo(RouteCollection applicationRoutes, string url, string httpMethod)
+        internal RequestInfo(RouteCollection applicationRoutes, string url)
         {
-            HttpContext = TestUtility.GetHttpContext(PrepareUrl(url), httpMethod);
+            HttpContext = TestUtility.GetHttpContext(PrepareUrl(url));
             this.applicationRoutes = applicationRoutes;
             requestUrl = url;
         }

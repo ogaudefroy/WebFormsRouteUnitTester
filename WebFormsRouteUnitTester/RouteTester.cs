@@ -56,16 +56,15 @@
         /// Used to supply the request information used for an incoming route test.
         /// </summary>
         /// <param name="url">The request URL.</param>
-        /// <param name="httpMethod">The HTTP method of the request (default is "GET").</param>
         /// <exception cref="ArgumentException">Thrown when the <paramref name="url"/> argument is null, empty, or contains only whitespace.</exception>
         /// <returns>A <see cref="RequestInfo"/> object.</returns>
-        public RequestInfo WithIncomingRequest(string url, string httpMethod = "GET")
+        public RequestInfo WithIncomingRequest(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
                 throw new ArgumentException("Url cannot be null or empty.", "url");
             }
-            return new RequestInfo(applicationRoutes, url, httpMethod);
+            return new RequestInfo(applicationRoutes, url);
         }
     }
 }
