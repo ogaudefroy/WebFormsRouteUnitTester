@@ -2,9 +2,9 @@
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("WebFormsRouteUnitTester.Tests")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("WebFormsRouteUnitTester unit tests assembly")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Olivier GAUDEFROY")]
 [assembly: AssemblyProduct("WebFormsRouteUnitTester.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
